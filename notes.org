@@ -1,0 +1,6 @@
+# Random notes/snippets from the book
+ when chaining methods together, anytime after you call data(), you can create an anonymous function that accepts d as input.
+
+
+
+
