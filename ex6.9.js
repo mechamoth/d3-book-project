@@ -35,7 +35,8 @@ var labelAttrs = {
   "text-anchor": "middle",
   x: function(d, i) { 
       return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2; 
-     },
+     }, 
+
   y: function(d) { return h - (d * 4) + 14; },
   class: "label"
 }
