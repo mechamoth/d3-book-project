@@ -18,6 +18,8 @@ div.bar {
     margin-right: 2px;
 }
 
+/* below are SVG rules, not CSS! */
+
 text.label {
     font-family: sans-serif;
     font-size: 11px;
@@ -28,4 +30,17 @@ text.scatterplot_label {
     font-family: sans-serif;
     font-size: 11px;
     fill: red;
+}
+
+/* for styling the axes. Works 'cuz they're all in an SVG group element. */
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
 }

@@ -64,8 +64,11 @@ svg.selectAll("text")
 // define the axes
 var xAxis = d3.svg.axis()
   .scale(xScale)
-  .orient("bottom"); // below the line
+  .orient("bottom") // below the line
+  .ticks(5); // "5" ticks
 
 // add the axes
 svg.append("g") // group SVG element
+  .attr("class", "axis") // used in style.css for styling
+  .attr("transform", "translate(0," + (h - padding) + ")") // move to bottom
   .call(xAxis);
