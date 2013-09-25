@@ -23,3 +23,9 @@ text.label {
     font-size: 11px;
     fill: white;
 }
+
+text.scatterplot_label {
+    font-family: sans-serif;
+    font-size: 11px;
+    fill: red;
+}
