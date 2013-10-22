@@ -14,29 +14,33 @@ var yScale = d3.scale.linear()
   .range([0, h]);
 
 //Create SVG element
-var svg = d3.select("body")
+var svg = d3.select("#e9_01")
   .append("svg")
   .attr("width", w)
   .attr("height", h);
+
+//Bar attributes
+var bar_attributes = {
+  x: function(d, i) {return xScale(i);},
+  y: function(d) {return h - yScale(d);},
+  width: xScale.rangeBand(),
+  height: function(d) {return yScale(d);},
+  fill: function(d) {return "rgb(0, 0, " + (d * 10) + ")";}
+};
 
 //Create bars
 svg.selectAll("rect")
   .data(dataset)
   .enter()
   .append("rect")
-  .attr("x", function(d, i) {
-    return xScale(i);
-  })
-  .attr("y", function(d) {
-    return h - yScale(d);
-  })
-  .attr("width", xScale.rangeBand())
-  .attr("height", function(d) {
-    return yScale(d);
-  })
-  .attr("fill", function(d) {
-    return "rgb(0, 0, " + (d * 10) + ")";
-  });
+  .attr(bar_attributes);
+
+//Label attributes
+var labelAttrs = {
+  x: function(d, i) {return xScale(i) + xScale.rangeBand() / 2;},
+  y: function(d) {return h - yScale(d) + 14;},
+  class: "barChartLabel" // for adding SVG style rules
+};
 
 //Create labels
 svg.selectAll("text")
@@ -46,13 +50,4 @@ svg.selectAll("text")
   .text(function(d) {
     return d;
   })
-  .attr("text-anchor", "middle")
-  .attr("x", function(d, i) {
-    return xScale(i) + xScale.rangeBand() / 2;
-  })
-  .attr("y", function(d) {
-    return h - yScale(d) + 14;
-  })
-  .attr("font-family", "sans-serif")
-  .attr("font-size", "11px")
-  .attr("fill", "white");
+  .attr(labelAttrs);

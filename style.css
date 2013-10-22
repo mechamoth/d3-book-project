@@ -1,3 +1,4 @@
+/*Just to make the headings pretty */
 h1 {
     font-family:  "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
@@ -43,4 +44,13 @@ text.scatterplot_label {
 .axis text {
     font-family: sans-serif;
     font-size: 11px;
+}
+
+/* For styling the labels on the bar chart.
+These are SVG rules, not CSS. */
+text.barChartLabel {
+    font-family: sans-serif;
+    font-size: 11px;
+    fill: white;
+    text-anchor: middle;
 }
