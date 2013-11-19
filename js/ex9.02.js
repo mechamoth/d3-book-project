@@ -56,13 +56,22 @@ svg.selectAll("text")
 
 d3.select("#e9_02_changeVals")
   .on("click", function() {
-    dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
-                    5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+    var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+		    11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+    
+    numValues = dataset.length;
+    console.log(numValues);
+    dataset = [];                                       //Initialize empty array
+    for (var i = 0; i < numValues; i++) {               //Loop numValues times
+      var newNumber = Math.floor(Math.random() * 100); //New random integer (0-24)
+      dataset.push(newNumber);                        //Add new number to array
+    }
 
     // redefining all of these inside the callback
     // otherwise they get overwritten by vars with same names
     // from scripts loaded after this one
     // there must be a better way of handling this
+    // ...I smell closures, but don't grok how to implement them
     var svg = d3.select("#e9_02").select("svg");
     var h = 250;
     var w = 600;
@@ -79,12 +88,22 @@ d3.select("#e9_02_changeVals")
     console.log(barAttributes);
     svg.selectAll("rect")
       .data(dataset)
+      .transition()
+      .delay(function(d, i) {
+        return i / dataset.length * 1000;
+      })
+      .duration(500)
       .attr({y: function(d) { return h - yScale(d); },
              height: function(d) { return yScale(d); },
              fill: function(d) { return "rgb(0, 0, " + (d * 10) + ")"; }
              });
     svg.selectAll("text")
       .data(dataset)
+      .transition()
+      .delay(function(d, i) {
+        return i / dataset.length * 1000;
+      })
+      .duration(500)
       .text(function(d) { return d; })
       .attr({
         x: function(d, i) { return xScale(i) + xScale.rangeBand() / 2; },
