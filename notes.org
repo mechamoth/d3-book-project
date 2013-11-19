@@ -1,6 +1,7 @@
 # Random notes/snippets from the book
  when chaining methods together, anytime after you call data(), you can create an anonymous function that accepts d as input.
 
+ the data() method returns a selection. The enter() method will return a selection only of the new elements. i.e. if you have a dataset, and something appends to it, then you can .data(updated_dataset).enter().append("rect") and you'll only get 1 new rect.
 
-
+ A data join happens whenever you bind data to DOM elements, i.e. every time you call data(). By default this uses index-ordering, but if data elements and DOM elements aren't in the same order, use key ordering. If I'm interpreting this right, this more or less requires you to use objects (or some other complex structure like a tuple) as data, where every data element has a unique value. This generally complicates the code, as you'll need to say 'd.value' all the time, and use accessor functions for things like d3.max().
 
